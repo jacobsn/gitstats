@@ -50,7 +50,7 @@ conf = {
 	'processes': 8,
 }
 
-def getpipeoutput(cmds, quiet = False):
+def getpipeoutput(cmds, quiet = True):
 	global exectime_external
 	start = time.time()
 	if not quiet and ON_LINUX and os.isatty(1):
@@ -1475,11 +1475,6 @@ class GitStats:
 		time_end = time.time()
 		exectime_internal = time_end - time_start
 		print 'Execution time %.5f secs, %.5f secs (%.2f %%) in external commands)' % (exectime_internal, exectime_external, (100.0 * exectime_external) / exectime_internal)
-		if sys.stdin.isatty():
-			print 'You may now run:'
-			print
-			print '   sensible-browser \'%s\'' % os.path.join(outputpath, 'index.html').replace("'", "'\\''")
-			print
 
 if __name__=='__main__':
 	g = GitStats()
